@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>آزمون سلامت روان GHQ-28 | آکادمی آکسون</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g-900:#08382a; --g-800:#0c4d38; --g-700:#0f6b4a; --g-600:#12946a;
+  --g-500:#17b57f; --g-400:#3fd39b; --g-300:#7de6bd; --g-200:#bdf0da;
+  --g-100:#e3f8ee; --g-50:#f3fbf7;
+  --ink:#12302a; --muted:#5c7a70; --line:#d8ece3;
+  --red:#dc2626;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(9,80,58,.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Vazirmatn',Tahoma,system-ui,sans-serif;
+  color:var(--ink); line-height:1.95; min-height:100vh;
+  background:
+    radial-gradient(1100px 560px at 100% -10%, #d9f5e7 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, #eafcf3 0%, transparent 55%),
+    #f5fbf8;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 60px; position: relative; z-index: 1;}
+
+/* ---------- Watermark ---------- */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Header & Logo ---------- */
+.topbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.top-logo-img {
+  height: 96px; 
+  max-width: 90%;
+  width: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  box-shadow: 0 8px 24px rgba(9,80,58,.15);
+}
+.pill {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--g-700);
+  box-shadow: 0 4px 12px rgba(9,80,58,.06);
+}
+
+/* ---------- لوگوی گزارش (فقط برای چاپ) ---------- */
+.report-logo {
+  display: none; 
+  text-align: center;
+  margin-bottom: 22px;
+}
+.report-logo-img {
+  height: 90px;
+  max-width: 80%;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(9,80,58,.15);
+  object-fit: contain;
+}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);animation:slideIn .4s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card-title{margin:0 0 6px;font-size:19px;font-weight:800;color:var(--g-800)}
+.card-sub{margin:0 0 22px;font-size:13px;color:var(--muted)}
+
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--g-800)}
+.field label .req{color:var(--red)}
+.input{width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:12px;
+  font-family:inherit;font-size:14px;background:var(--g-50);color:var(--ink);
+  transition:.2s;outline:none}
+.input:focus{border-color:var(--g-400);background:#fff;box-shadow:0 0 0 4px rgba(63,211,155,.18)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 26px;border-radius:13px;border:1.5px solid transparent;
+  font-size:14px;font-weight:700;transition:.2s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--g-700),var(--g-500));color:#fff;
+  box-shadow:0 8px 20px rgba(18,148,106,.3)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(18,148,106,.4)}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--g-800)}
+.btn-ghost:hover{background:var(--g-50);border-color:var(--g-200)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.actions .btn{flex:1 1 auto;min-width:140px}
+
+.quiz-top{margin-bottom:18px}
+.progress-track{height:8px;background:var(--g-100);border-radius:999px;overflow:hidden;margin-bottom:12px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--g-700),var(--g-400));
+  border-radius:999px;transition:width .4s ease}
+.meta{display:flex;justify-content:flex-start;align-items:center;gap:10px;flex-wrap:wrap}
+.chip{display:inline-block;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700}
+.chip-count{background:var(--g-100);color:var(--g-800)}
+
+.q-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);animation:slideIn .35s ease}
+.q-text{margin:0 0 22px;font-size:16px;font-weight:600;line-height:1.9;color:var(--ink)}
+
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;padding:15px 18px;
+  background:#fff;border:1.5px solid var(--line);border-radius:14px;
+  font-family:inherit;font-size:14px;font-weight:500;color:var(--ink);
+  text-align:right;transition:all .2s ease}
+.opt:hover{border-color:var(--g-300);background:var(--g-50);transform:translateX(-2px)}
+.opt-num{width:28px;height:28px;border-radius:8px;background:var(--g-100);color:var(--g-700);
+  display:grid;place-items:center;font-weight:800;font-size:13px;flex-shrink:0;transition:.2s}
+.opt-label{flex:1}
+.opt-check{opacity:0;font-size:18px;font-weight:800;color:#fff;transition:.2s}
+.opt.selected{background:linear-gradient(135deg,var(--g-700),var(--g-500));color:#fff;
+  border-color:var(--g-600);box-shadow:0 8px 20px rgba(18,148,106,.3)}
+.opt.selected .opt-num{background:rgba(255,255,255,.25);color:#fff}
+.opt.selected .opt-check{opacity:1}
+
+.nav-btns{display:flex;gap:12px;margin-top:22px}
+.nav-btns .btn{flex:1}
+
+.hero{border-radius:var(--radius);padding:28px;color:#fff;margin-bottom:16px;
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;
+  background:rgba(255,255,255,.09);top:-120px;left:-80px;pointer-events:none}
+.hero-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  margin-bottom:16px;position:relative;z-index:2}
+.hero-tag{font-size:12px;opacity:.85;margin:0 0 4px}
+.hero-name{font-size:22px;font-weight:800;margin:0}
+.hero-body{display:flex;align-items:center;gap:22px;flex-wrap:wrap;position:relative;z-index:2}
+.score-ring{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.14);border:5px solid rgba(255,255,255,.35);flex-shrink:0}
+.score-ring b{font-size:28px;font-weight:800;line-height:1}
+.score-ring span{font-size:11px;opacity:.85}
+.hero-status{font-size:17px;font-weight:800;margin:0 0 4px}
+.hero-status-sub{font-size:13px;opacity:.92;margin:0}
+
+.note{background:var(--g-50);border:1px dashed var(--g-200);border-radius:14px;
+  padding:18px 20px;font-size:13px;line-height:2;color:var(--g-900);margin-bottom:16px}
+.alert{border-radius:16px;padding:18px 20px;margin-bottom:16px;font-size:13.5px;line-height:2;
+  border:2px solid var(--red);background:#fff5f5;color:#7f1d1d}
+.alert h3{margin:0 0 6px;font-size:15px;font-weight:800;color:var(--red)}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.info-item{background:var(--g-50);border:1px solid var(--line);border-radius:12px;padding:11px 15px}
+.info-item .k{display:block;font-size:11px;color:var(--muted);margin-bottom:2px}
+.info-item .v{font-size:13.5px;font-weight:700}
+
+.section-title{font-size:17px;font-weight:800;color:var(--g-800);margin:26px 4px 14px}
+
+/* =========================================
+   Visual Dashboard (Inspired by uploaded image)
+   ========================================= */
+.visual-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 26px;
+  direction: rtl;
+}
+@media (max-width: 700px) {
+  .visual-dashboard { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+.vd-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.vd-tube {
+  width: 100%;
+  max-width: 100px;
+  height: 130px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06), inset 0 0 0 1px rgba(0,0,0,.03);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.vd-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0; /* Animated via JS */
+  background: var(--wave-color);
+  transition: height 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 0 0 24px 24px;
+}
+/* Wave effect on top of the fill */
+.vd-fill::before, .vd-fill::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 50%;
+  background: var(--wave-color);
+  border-radius: 40%;
+  transform: translate(-50%, -75%);
+  opacity: 0.8;
+}
+.vd-fill::before {
+  animation: wave-spin 7s linear infinite;
+}
+.vd-fill::after {
+  animation: wave-spin 9s linear infinite;
+  border-radius: 45%;
+  opacity: 0.6;
+}
+@keyframes wave-spin {
+  0% { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(360deg); }
+}
+
+.vd-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #7f8c8d;
+  opacity: 0.7;
+}
+.vd-icon svg {
+  width: 42px;
+  height: 42px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vd-pct {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+.vd-label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   Detailed Domain Cards
+   ========================================= */
+.dcard{border:1.5px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px;
+  background:#fff;break-inside:avoid; position: relative; z-index: 1;}
+.dcard-top{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  flex-wrap:wrap;margin-bottom:10px}
+.dcard-title{font-size:15.5px;font-weight:800;margin:0;color:var(--g-800)}
+.badge{display:inline-block;padding:5px 13px;border-radius:999px;font-size:12px;
+  font-weight:800;color:#fff}
+.dcard-score{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.track{height:9px;border-radius:999px;background:#eaf4ef;overflow:hidden;margin-bottom:16px}
+.track i{display:block;height:100%;border-radius:999px;transition:width .8s ease}
+
+.def-block{
+  background:linear-gradient(135deg,#f6fdf9,#eefaf3);
+  border:1px solid var(--g-200);
+  border-right:4px solid var(--g-500);
+  border-radius:12px;padding:14px 16px;margin-bottom:16px
+}
+.def-block h4{margin:0 0 6px;font-size:12.5px;font-weight:800;color:var(--g-700)}
+.def-block p{margin:0;font-size:13px;line-height:2;color:#2b463d}
+
+.block{margin-bottom:14px}
+.block:last-child{margin-bottom:0}
+.block h4{margin:0 0 4px;font-size:12.5px;font-weight:800;color:var(--g-700)}
+.block p{margin:0;font-size:13px;line-height:2;color:#2b463d}
+.block.action{background:var(--g-50);border:1px solid var(--g-200);border-radius:12px;padding:14px 16px}
+.block.action h4{color:var(--g-800)}
+
+.total-card{border-radius:16px;padding:22px;color:#fff;margin-bottom:16px;break-inside:avoid}
+.total-card h3{margin:0 0 8px;font-size:16px;font-weight:800}
+.total-card p{margin:0;font-size:13.5px;line-height:2}
+
+details.review{margin-top:20px;background:#fff;border:1px solid var(--line);
+  border-radius:16px;padding:4px 20px}
+details.review summary{cursor:pointer;padding:14px 0;font-weight:800;color:var(--g-800);
+  font-size:14px;list-style:none}
+details.review summary::-webkit-details-marker{display:none}
+details.review summary::before{content:'▸';margin-left:8px;color:var(--g-600);transition:.2s}
+details.review[open] summary::before{transform:rotate(90deg);display:inline-block}
+.rev-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;
+  border-top:1px dashed var(--line);font-size:12.5px}
+.rev-q{flex:1;color:#2b463d}
+.rev-a{font-weight:700;color:var(--g-700);white-space:nowrap}
+
+.academy-credit{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  margin-top:26px;padding:12px 18px;
+  background:var(--g-50);border:1px dashed var(--g-200);border-radius:12px;
+  font-size:12px;font-weight:700;color:var(--g-800)
+}
+
+.disclaimer{font-size:12px;color:var(--muted);line-height:2;text-align:center;margin-top:22px}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--g-800);color:#fff;padding:12px 24px;border-radius:12px;
+  font-size:13px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.2);
+  z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s}
+.toast.show{opacity:1}
+
+@media print{
+  @page{size:A4;margin:13mm}
+  body{
+    background:#fff !important;font-size:11.5px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .wrap{max-width:100%;padding:0}
+  .no-print,.topbar,.nav-btns,.actions{display:none !important}
+  .card,.dcard,.hero,.total-card,.alert,.note,details.review{
+    box-shadow:none !important;break-inside:avoid;page-break-inside:avoid}
+  .hero,.total-card,.badge,.score-ring,.track i,.progress-fill,.def-block,.vd-tube,.vd-fill,.vd-icon{
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .dcard{border-color:#ccc}
+  details.review summary{display:none}
+  .hero{color:#fff !important}
+  .hero::after{display:none}
+  
+  .report-logo {
+    display: block !important; 
+    margin-top: 10px;
+  }
+  .report-logo-img { 
+    height: 70px; 
+    margin-bottom: 10px; 
+  }
+  
+  .watermark {
+    position: fixed;
+    opacity: 0.07;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+
+  /* در چاپ، افکت موج را حذف و لوله‌ها را کاملاً پر نشان می‌دهیم */
+  .vd-fill {
+    transition: none !important;
+  }
+  .vd-fill::before, .vd-fill::after {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- واترمارک پس‌زمینه -->
+<img src="./axon-logo.jpg" alt="واترمارک" class="watermark">
+
+<div class="wrap">
+  <!-- هدر با لوگوی بزرگ و وسط‌چین (فقط در صفحه نمایش) -->
+  <header class="topbar no-print">
+    <img src="./axon-logo.jpg" alt="آکادمی هوش و یادگیری آکسون" class="top-logo-img">
+    <div class="pill">۲۸ سوال · ۴ حیطه · حدود ۵ دقیقه</div>
+  </header>
+  <main id="app"></main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   🔷 تنظیمات آکادمی آکسون
+   ========================================================= */
+const ACADEMY = {
+  name: 'آکادمی هوش و یادگیری آکسون',
+  logoUrl: './axon-logo.jpg'
+};
+
+/* =========================================================
+   تنظیمات پرس‌لاین (اختیاری)
+   ========================================================= */
+const PORSLINE = {
+  enabled: false,
+  proxyUrl: 'https://YOUR-WORKER.workers.dev',
+  surveyId: 'YOUR_SURVEY_ID',
+  questionIdMap: {}
+};
+
+/* =========================================================
+   داده‌ها
+   ========================================================= */
+const OPTIONS = ['اصلا', 'در حد معمول', 'تقریباً بیش از حد معمول', 'به مراتب بیشتر از حد معمول'];
+
+const QUESTIONS = [
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که از نظر جسمانی سالم هستید و وضع خوبی دارید؟', r:true },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که نیاز به داروهای تقویتی دارید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که دچار ضعف و سستی هستید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که بیمار هستید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که سردرد دارید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که سرتان را محکم با چیزی مثل دستمال بسته‌اند یا فشاری به سرتان وارد می‌شود؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که بعضی اوقات بدنتان داغ یا سرد شود؟', r:false },
+  { t:'در یک ماه گذشته، اتفاق افتاده که در اثر نگرانی دچار بی‌خوابی شده باشید؟', r:false },
+  { t:'در یک ماه گذشته، شب‌ها وسط خواب بیدار شده‌اید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که دائماً تحت فشار هستید؟', r:false },
+  { t:'در یک ماه گذشته، عصبانی و بدخلق شده‌اید؟', r:false },
+  { t:'در یک ماه گذشته، بدون هیچ دلیل قانع‌کننده‌ای هراسان یا وحشت‌زده شده‌اید؟', r:false },
+  { t:'در یک ماه گذشته، احساس کرده‌اید که انجام هر کاری از توانایی شما خارج است؟', r:false },
+  { t:'در یک ماه گذشته، احساس کرده‌اید که در تمامی مدت عصبی هستید و دل‌شوره دارید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس را داشته‌اید که می‌توانید خودتان را مشغول و سرگرم نگه دارید؟', r:true },
+  { t:'در یک ماه گذشته، اتفاق افتاده که برای انجام کارهایتان بیشتر از حد معمول وقت صرف کنید؟', r:false },
+  { t:'در یک ماه گذشته، به طور کلی این احساس در شما وجود داشته که کارها را به خوبی انجام می‌دهید؟', r:true },
+  { t:'در یک ماه گذشته، از نحوه انجام کارهایتان احساس رضایت داشته‌اید؟', r:true },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که نقش مفیدی در انجام کارها به عهده دارید؟', r:true },
+  { t:'در یک ماه گذشته، توانایی تصمیم‌گیری درباره مسائل را داشته‌اید؟', r:true },
+  { t:'در یک ماه گذشته، قادر بوده‌اید از فعالیت‌های روزمره زندگی لذت ببرید؟', r:true },
+  { t:'در یک ماه گذشته، فکر کرده‌اید که شخص بی‌ارزشی هستید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که زندگی کاملاً ناامیدکننده است؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که زندگی ارزش زنده بودن را ندارد؟', r:false },
+  { t:'در یک ماه گذشته، به این مسأله فکر کرده‌اید که می‌خواهید زندگی خود را نابود کنید؟', r:false },
+  { t:'در یک ماه گذشته، این احساس در شما وجود داشته که گاهی چون اعصابتان بیش از حد خراب است نمی‌توانید کاری انجام دهید؟', r:false },
+  { t:'در یک ماه گذشته، به این نتیجه رسیده‌اید که ای کاش مرده بودید و اصولاً از شر زندگی خلاص می‌شدید؟', r:false },
+  { t:'در یک ماه گذشته، این فکر به ذهن‌تان رسیده است که بخواهید به زندگی‌تان خاتمه دهید؟', r:false }
+];
+
+const CRITICAL_INDEXES = [24, 26, 27];
+
+const DOMAINS = [
+  {
+    title: 'حیطه ۱: علائم جسمانی',
+    shortTitle: 'علائم جسمانی',
+    from: 0, to: 6,
+    waveColor: '#fcd5b5', // Light Orange from image
+    textColor: '#d35400', // Dark Orange text
+    icon: `<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>`,
+    definition: 'بدن ما اغلب آینه‌ی حساسِ ذهن است. وقتی فشار روانی طولانی می‌شود، ذهن آن را به زبانِ بدن ترجمه می‌کند. در این بخش، نشانه‌هایی که ریشه‌ی پزشکیِ مشخصی ندارند اما نشان‌دهنده‌ی فشار بر سیستم عصبی شما هستند (مثل دردهای بدون علت، ضعف عمومی، خستگی مفرط) بررسی می‌شود.',
+    levels: [
+      { label:'سطح ۱: مطلوب', min:0, max:6,
+        self:'سطح انرژی بدنی شما متعادل است و تنش‌های روانی به شکل دردهای جسمی یا خستگی مفرط در بدنتان جمع نشده‌اند.',
+        child:'این شادابی و توان جسمی، به شما حضور باکیفیت و حوصله کافی در کنار فرزندتان می‌دهد. کودک در کنار والدی که انرژی پایدار دارد، احساس امنیت، سرزندگی و همراهی می‌کند.',
+        action:'چرخه خواب و فعالیت بدنی فعلی خود را حفظ کنید و روزانه زمان کوتاهی را به بازی‌های پرتحرک یا فعالیت‌های مشترک با فرزندتان اختصاص دهید تا این انرژی مثبت به او هم منتقل شود.' },
+      { label:'سطح ۲: خفیف و در آستانه', min:7, max:11,
+        self:'بدنتان شروع به نشان دادن علائم خستگی، کسالت یا سردردهای گاه‌به‌گاه کرده است؛ این‌ها زنگ خطرهای اولیه تنش روحی هستند که از طریق جسم نمایان می‌شوند.',
+        child:'وقتی جسمتان خسته است، آستانه تحملتان در برابر سر و صدا یا نیازهای طبیعی کودک پایین می‌آید. ممکن است در ساعات پایانی روز بی‌حوصله شوید و کودک این کم‌حوصلگی را به حساب طرد شدن یا دوست نداشتن بگذارد.',
+        action:'زمان‌های اوج خستگی خود در روز را شناسایی کنید و در آن ساعت‌ها سراغ تکالیف درسی یا بحث‌های چالشی با فرزندتان نروید. روزانه حداقل ۲۰ دقیقه استراحت مطلق بدون گوشی و بدون مسئولیت‌های خانه برای بازیابی توان بدنی در نظر بگیرید.' },
+      { label:'سطح ۳: متوسط', min:12, max:16,
+        self:'شما دچار فرسودگی جسمانی با منشأ روانی (روان‌تنی) هستید. احساس ضعف، فشار در سر یا نیاز مداوم به مکمل و استراحت، نشان می‌دهد بار روانی فعلی بیش از توان بدنی شماست.',
+        child:'کودک شما مدام با والدی روبه‌روست که توان همراهی ندارد یا از درد و خستگی شکایت می‌کند. این وضعیت در کودک «اضطراب مراقبت» ایجاد می‌کند؛ یعنی کودک به جای کودکی کردن، نگران حال شما می‌شود یا برای جلب توجهِ والدِ بی‌رمق، به بهانه‌گیری و لجبازی پناه می‌برد.',
+        action:'بخشی از وظایف خانه و مدیریت کودک را فوراً به همسر یا اطرافیان بسپارید. چکاپ پزشکی پایه (کم‌خونی، تیروئید، ویتامین D) انجام دهید و به کودک با زبانی ساده بگویید: «من امروز کمی خسته‌ام و ربطی به کارهای تو ندارد» تا خودش را مقصر نداند.' },
+      { label:'سطح ۴: شدید و بالینی', min:17, max:21,
+        self:'فشارهای روانی به شدت بر جسم شما اثر گذاشته‌اند و بدنتان در وضعیت هشدار و تحلیل انرژی قرار دارد.',
+        child:'در این سطح، حضور فیزیکی شما در خانه با غیبت روانی همراه است. فضای خانه برای کودک سنگین، سرد و بی‌روح می‌شود و کودک ممکن است دقیقاً الگوی شکایت‌های بدنی شما (مثل دل‌درد و سردردهای قبل از مدرسه) را تقلید و درونی کند.',
+        action:'مراجعه به پزشک و روان‌شناس برای بررسی ریشه این فرسودگی ضروری است. تا زمان بهبود نسبی، فشار آموزش و چک کردن تکالیف کودک را از دوش خود بردارید و صرفاً ارتباط عاطفی آرام و کم‌تنش (مثل در آغوش گرفتن یا کتاب خواندن در حالت استراحت) را جایگزین کنید.' }
+    ]
+  },
+  {
+    title: 'حیطه ۲: اضطراب و اختلال خواب',
+    shortTitle: 'اضطراب و اختلال خواب',
+    from: 7, to: 13,
+    waveColor: '#fdb6c1', // Light Pink
+    textColor: '#c0392b', // Dark Red/Pink
+    icon: `<svg viewBox="0 0 24 24"><path d="M4 14h4l2-9 4 18 2-9h4"/></svg>`,
+    definition: 'این حیطه به تواناییِ ذهن شما برای «آرام ماندن» اشاره دارد. اضطراب، یعنی سیستم عصبی شما مدام در حالت «آماده‌باش» است. وقتی این حالت فعال می‌شود، ذهن نمی‌تواند برای استراحت خاموش شود؛ در نتیجه، دچار بی‌خوابی، دل‌شوره و فشار درونی می‌شوید.',
+    levels: [
+      { label:'سطح ۱: مطلوب', min:0, max:6,
+        self:'مدیریت هیجانی و کیفیت خواب شما در سطح خوبی قرار دارد و نگرانی‌های روزمره آرامش درونی‌تان را برهم نزده‌اند.',
+        child:'آرامش شما مثل یک لنگر امن برای سیستم عصبی فرزندتان عمل می‌کند. وقتی شما آرام هستید، کودک یاد می‌گیرد که دنیا جای امنی است و در مواجهه با چالش‌های مدرسه و دوستانش کمتر دستپاچه می‌شود.',
+        action:'هنگام بروز ترس یا نگرانی در فرزندتان، همین رویکرد آرام و شنونده را حفظ کنید و به او نشان دهید چطور مسائل را بدون بزرگ‌نمایی حل می‌کنید.' },
+      { label:'سطح ۲: خفیف و در آستانه', min:7, max:11,
+        self:'ذهن شما بیش از حد معمول درگیر نگرانی است، خوابتان کمی سبک یا منقطع شده و گاهی احساس می‌کنید تحت فشار هستید و زود عصبی می‌شوید.',
+        child:'اضطراب مسری‌ترین هیجان بین والد و فرزند است. دلشوره پنهان شما از طریق لحن صدا، عجله کردن‌ها و تذکرهای مکرر («زود باش»، «مواظب باش»، «چرا مشقت مونده؟») مستقیماً به کودک منتقل شده و تمرکز او را در یادگیری کم می‌کند.',
+        action:'یک ساعت قبل از خواب، استفاده از موبایل و پیگیری اخبار را متوقف کنید. وقتی حس می‌کنید ضربان قلبتان بالاست یا کلافه‌اید، هرگز به کودک تذکر تربیتی ندهید؛ ابتدا با چند نفس عمیق یا نوشیدن آب از محیط فاصله بگیرید و بعد گفت‌وگو کنید.' },
+      { label:'سطح ۳: متوسط', min:12, max:16,
+        self:'شما در وضعیت برانگیختگی عصبی مداوم، بی‌خوابی و بی‌قراری قرار دارید و آستانه خشمتان به شکل محسوسی پایین آمده است.',
+        child:'والد مضطرب و کم‌خواب، ناخواسته محیط خانه را به یک «میدان مین» تبدیل می‌کند که کودک در آن نمی‌داند چه زمانی با واکنش تند روبه‌رو می‌شود. این وضعیت باعث می‌شود کودک یا به شدت محتاط، وابسته و مضطرب شود، و یا با پرخاشگری متقابل از خودش دفاع کند.',
+        action:'کنترل‌های ذره‌بینی روی رفتار و درس کودک را متوقف کنید. به جای پایش مداوم فرزندتان، روی تنظیم خواب و کاهش تنش خودتان (با کمک تمرینات تنفسی، پیاده‌روی روزانه یا مشاوره) تمرکز کنید. هر زمان که بر سر کودک فریاد زدید، پس از آرام شدن حتماً بابت لحن تندتان عذرخواهی کنید تا رابطه ترمیم شود.' },
+      { label:'سطح ۴: شدید و بالینی', min:17, max:21,
+        self:'سطح اضطراب، هراس و اختلال خواب شما در محدوده بالینی است و سیستم عصبی‌تان احساس درماندگی و فشار شدید می‌کند.',
+        child:'شما در حال حاضر بار سنگینی از ترس و تنش را به فضای روانی کودک تزریق می‌کنید. کودکی که با والدِ دارای اضطراب شدید زندگی می‌کند، بخش بزرگی از ظرفیت ذهنی‌اش به جای «یادگیری و رشد» صرف «پایش حال والد و بقای روانی» می‌شود که نتیجه آن افت تحصیلی، ناخن‌جویدن، شب‌ادراری یا اضطراب جدایی است.',
+        action:'این سطح از اضطراب با اراده شخصی برطرف نمی‌شود و نیازمند ارزیابی تخصصی (روان‌شناس بالینی یا روان‌پزشک) برای تنظیم خواب و آرام‌سازی سیستم عصبی است. تا شروع درمان، از هرگونه تصمیم‌گیری مهم یا تنبیه و بحث‌های طولانی با کودک خودداری کنید.' }
+    ]
+  },
+  {
+    title: 'حیطه ۳: کارکرد اجتماعی',
+    shortTitle: 'کارکرد اجتماعی',
+    from: 14, to: 20,
+    waveColor: '#bce2fc', // Light Blue
+    textColor: '#2980b9', // Dark Blue
+    icon: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    definition: 'این بخش به توانایی شما در «مدیریتِ زندگیِ روزمره» مربوط است. ما بررسی می‌کنیم که آیا احساس می‌کنید کنترلِ کارهای خود را در دست دارید؟ آیا می‌توانید تصمیم‌گیری کنید؟ آیا از نقش خود در خانواده رضایت دارید؟ افت در این حیطه به معنای احساسِ «ناتوانی» در برابر مسئولیت‌هاست.',
+    levels: [
+      { label:'سطح ۱: مطلوب', min:0, max:6,
+        self:'شما از عملکرد روزمره، قدرت تصمیم‌گیری و نقش خود در خانواده و جامعه رضایت دارید و از کارهای روزانه لذت می‌برید.',
+        child:'شما الگوی یک انسان «کارآمد و هدفمند» برای فرزندتان هستید. کودک از شما یاد می‌گیرد که چگونه تصمیم بگیرد، کارهایش را مدیریت کند و از تلاش کردن لذت ببرد.',
+        action:'در کارهای روزمره به فرزندتان هم مسئولیت‌های کوچک متناسب با سنش بدهید تا حس کارآمدی و مفید بودن شما را در عمل تمرین کند.' },
+      { label:'سطح ۲: خفیف و در آستانه', min:7, max:11,
+        self:'سرعت انجام کارهایتان کمی کند شده، تصمیم‌گیری برایتان سخت‌تر از قبل است و کمتر از فعالیت‌های روزمره لذت می‌برید.',
+        child:'کاهش نظم و حوصله شما در مدیریت کارهای روزانه، باعث کم‌رنگ شدن قوانین و روتین‌های خانه می‌شود. وقتی برنامه خواب، غذا یا تفریح خانه نامنظم شود، کودک دچار سردرگمی و بی‌نظمی رفتاری و تحصیلی خواهد شد.',
+        action:'لیست کارهای روزانه خود را کوتاه و واقع‌بینانه کنید و کمال‌گرایی را کنار بگذارید. برای خانه فقط ۲ یا ۳ قانون ساده و ثابت (مثل ساعت خواب و ساعت مطالعه) نگه دارید و از درگیر شدن با جزئیات فرعی بپرهیزید.' },
+      { label:'سطح ۳: متوسط', min:12, max:16,
+        self:'شما احساس می‌کنید از پس مسئولیت‌های روزمره برنمی‌آیید، رضایتتان از عملکرد خودتان بسیار کم شده و در تصمیم‌گیری‌ها دچار تردید و فرسودگی هستید.',
+        child:'وقتی والد احساس بی‌کفایتی یا کلافگی در مدیریت زندگی دارد، در فرزندداری هم بین «سخت‌گیری ناگهانی» و «رهاشدگی کامل» نوسان می‌کند. این عدم ثبات، حس خودکارآمدی کودک را تضعیف کرده و او را در کارهای مدرسه وابسته و مردد بار می‌آورد.',
+        action:'برنامه‌ریزی‌های پیچیده را کنار بگذارید و از یک برنامه هفتگی مکتوب و بسیار ساده کمک بگیرید. بخشی از امور اجرایی کودک (مثل سرویس، کلاس‌های فوق‌برنامه غیرضروری یا پیگیری‌های درسی) را کم یا برون‌سپاری کنید تا فشار تصمیم‌گیری از روی شما برداشته شود.' },
+      { label:'سطح ۴: شدید و بالینی', min:17, max:21,
+        self:'کارکرد روزمره و اجتماعی شما به شدت افت کرده است؛ انجام کارهای عادی برایتان طاقت‌فرساست و لذتی از فعالیت‌های زندگی نمی‌برید.',
+        child:'انزوای اجتماعی و قفل‌شدگی شما در امور روزمره، دنیای کودک را هم کوچک و منزوی می‌کند. در چنین فضایی، گاهی جای والد و کودک عوض می‌شود (کودکِ والدشده) و فرزند مجبور می‌شود بار عاطفی یا اجرایی خانه را به دوش بکشد که آسیب جدی به رشد روانی او می‌زند.',
+        action:'دریافت کمک تخصصی از مشاور برای بازگشت تدریجی به فعالیت‌های روزمره (فعال‌سازی رفتاری) ضروری است. ارتباط کودک با محیط‌های پویا مثل مهد، مدرسه، ورزش یا اقوام امن را حفظ کنید تا کودک از فضای راکد خانه فاصله بگیرد.' }
+    ]
+  },
+  {
+    title: 'حیطه ۴: افسردگی',
+    shortTitle: 'افسردگی',
+    from: 21, to: 27,
+    waveColor: '#c4f0c5', // Light Green
+    textColor: '#27ae60', // Dark Green
+    icon: `<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5C19 16.65 12 21 12 21Z"/><path d="M12 8v8"/><path d="M9 12h6"/></svg>`,
+    definition: 'این حیطه به بررسی «خلق‌وخوی بنیادین» شما می‌پردازد. افسردگی صرفاً «غمگینی» نیست؛ بلکه مجموعه‌ای از احساسات مثل ناامیدی عمیق نسبت به آینده، حسِ بی‌ارزشیِ شخصی و از دست دادن علاقه به فعالیت‌های لذت‌بخش است که «شورِ زندگی» را در شما کم‌رنگ می‌کند.',
+    levels: [
+      { label:'سطح ۱: مطلوب', min:0, max:6,
+        self:'شما دارای امید به زندگی، احساس ارزشمندی و خلق متعادل هستید.',
+        child:'نگاه امیدوار و احساس ارزشمندی شما، پایه اصلی «عزت‌نفس» فرزندتان است. کودک در آینه چشمان باانگیزه شما، خودش را فردی دوست‌داشتنی و آینده را روشن می‌بیند.',
+        action:'گفت‌وگوهای مثبت، تحسین تلاش‌های کودک و ابراز محبت کلامی و عملی را همچون گذشته در برنامه روزانه خود نگه دارید.' },
+      { label:'سطح ۲: خفیف و در آستانه', min:7, max:11,
+        self:'رگه‌هایی از غمگینی، ناامیدی گاه‌به‌گاه یا زیر سوال بردن ارزش خودتان در ذهن شما شکل گرفته که نشانه افت خلق است.',
+        child:'کودکان به تغییرات چهره و لحن والدین بسیار حساس‌اند. چهره درهم، سکوت‌های سنگین یا آه کشیدن‌های شما باعث می‌شود کودک فکر کند «من کار بدی کرده‌ام که مامان/بابا ناراحت است» و دچار احساس گناه پنهان شود.',
+        action:'احساسات خود را سرکوب نکنید، اما با یک فعالیت لذت‌بخش روزانه، ارتباط با دوستان یا مشاوره کوتاه‌مدت به داد خلق خود برسید. در تعامل با کودک، آگاهانه ارتباط چشمی و لبخند را حفظ کنید و اگر غمگین هستید، به او اطمینان بدهید که علتش رفتار او نیست.' },
+      { label:'سطح ۳: متوسط', min:12, max:16,
+        self:'شما علائم واضحی از افسردگی، احساس بی‌ارزشی، ناامیدی نسبت به زندگی و فلج شدن کارکرد به دلیل فشار عصبی را تجربه می‌کنید.',
+        child:'والد افسرده، از نظر عاطفی «در دسترس» کودک نیست. وقتی کودک با ذوق کاری را نشان می‌دهد و پاسخ سرد یا بی‌تفاوت می‌گیرد، دچار «محرومیت عاطفی» می‌شود. این کودکان برای بقا یا به شدت گوشه‌گیر و غمگین می‌شوند، و یا با رفتارهای پرخطر و نافرمانی شدید سعی می‌کنند والدِ خاموش را به واکنش وادار کنند.',
+        action:'این وضعیت نیازمند شروع جلسات روان‌درمانی است. تا زمان بهبود خلق، روزانه فقط ۱۵ دقیقه زمان ویژه تنظیم کنید که در آن موبایل را کنار می‌گذارید و بدون هیچ نصیحتی، فقط تماشاگرِ باحوصله و مشوقِ بازیِ فرزندتان هستید.' },
+      { label:'سطح ۴: شدید و بالینی — هشدار بحرانی', min:17, max:21,
+        self:'نمره شما نشان‌دهنده افسردگی شدید، ناامیدی عمیق و وجود افکار مربوط به پایان دادن به زندگی است. (نکته بالینی: حتی اگر کل نمره این بخش پایین باشد اما به سوالات مربوط به افکار آسیب به خود پاسخ «تقریباً بیش از حد معمول» یا «به مراتب بیشتر» داده باشید، باید مستقیماً در این سطح بحرانی قرار گیرد).',
+        child:'زندگی با والدی که درگیر افسردگی حاد و ناامیدی عمیق است، امنیت بنیادین کودک را تهدید می‌کند و ترس عمیق از رهاشدگی، غم پنهان و اختلالات رفتاری و یادگیری جدی در کودک به جا می‌گذارد. مهم‌ترین و حیاتی‌ترین هدیه‌ای که در این لحظه می‌توانید به فرزندتان بدهید، زنده ماندن، درمان شدن و مراقبت از خودتان است.',
+        action:'شما مجبور نیستید این بار سنگین را به تنهایی به دوش بکشید و این حالت کاملاً قابل درمان است. همین امروز برای دریافت کمک تخصصی به روان‌پزشک یا روان‌شناس بالینی مراجعه کنید و در صورت شدت افکار ناامیدکننده، با خط مشاوره بهزیستی (۱۴۸۰) یا اورژانس اجتماعی (۱۲۳) تماس بگیرید و یکی از اعضای امن خانواده را در جریان بگذارید تا در مراقبت از کودک کنارتان باشد.' }
+    ]
+  }
+];
+
+const TOTAL_LEVELS = [
+  { label:'وضعیت سبز', min:0, max:22, title:'والدِ تنظیم‌گر و منبع امنیت',
+    text:'حال درونی شما در وضعیت پایداری است. شما در رابطه با فرزندتان نقش یک «عایق روانی» را دارید که استرس‌های محیط بیرون را جذب کرده و آرامش را به کودک منتقل می‌کنید. همین مسیر خودمراقبتی را ادامه دهید.' },
+  { label:'وضعیت زرد', min:23, max:40, title:'والدِ خسته و انتقال‌دهنده تنش خفیف',
+    text:'شما در آستانه فرسودگی هستید. بخش زیادی از چالش‌های رفتاری یا مقاومت‌های فعلی فرزندتان، بازتابِ مستقیمِ خستگی و تنش‌های پنهان خود شماست. قبل از هرگونه کلاس یا روش تربیتی جدید برای کودک، ابتدا به بازیابی انرژی و کاهش استرس خودتان بپردازید.' },
+  { label:'وضعیت نارنجی', min:41, max:60, title:'چرخه معیوب انتقال فشار روانی به کودک',
+    text:'فشار روانی شما بالاست و این حال ناخوشایند به طور مستقیم در حال سرریز شدن به روان فرزندتان است. در این شرایط، سخت‌گیری‌های درسی و تربیتی نه تنها نتیجه نمی‌دهد، بلکه رابطه شما و کودک‌تان را تخریب می‌کند. اولویت اول در حال حاضر، مراجعه شما به مشاور، کاهش توقعات از خود و کودک، و آرام‌سازی فضای خانه است.' },
+  { label:'وضعیت قرمز', min:61, max:84, title:'وضعیت بحرانی و نیازمند مداخله فوری',
+    text:'شما در حال تجربه یک بحران جدی روانی هستید و ادامه این وضعیت، هم سلامت شما و هم سلامت روان و رشد فرزندتان را به خطر می‌اندازد. کودک شما بیش از هر معلم و برنامه‌ای، به والدی نیاز دارد که حالش خوب باشد؛ لطفاً هرچه سریع‌تر فرآیند درمان تخصصی (روان‌پزشکی و روان‌درمانی) را برای خودتان آغاز کنید.' }
+];
+
+const INTRO_NOTE = 'والد گرامی، این گزارش بر اساس پاسخ‌های شخص شما به پرسشنامه تهیه شده است. هدف ما از این تحلیل، نه برچسب‌گذاریِ روانی، بلکه شناسایی سیگنال‌هایی است که ذهن و بدن شما برای درخواستِ توجه، استراحت و مراقبت بیشتر ارسال می‌کنند. از آنجا که این نتیجه‌گیری مستقیماً از دیدگاه و تجربه شخصی خودِ شما استخراج شده است، می‌توانید آن را به عنوان یک نقشه راه برای ارتقای سلامت فردی خود و بهبود کیفیت رابطه با فرزندتان در نظر بگیرید.';
+
+const LEVEL_COLORS = ['#12946a', '#e0a400', '#ef7d1a', '#dc2626'];
+const HERO_GRADIENTS = [
+  'linear-gradient(135deg,#0c4d38,#12946a)',
+  'linear-gradient(135deg,#8a6100,#e0a400)',
+  'linear-gradient(135deg,#8a3d05,#ef7d1a)',
+  'linear-gradient(135deg,#6b0f0f,#dc2626)'
+];
+
+/* =========================================================
+   State
+   ========================================================= */
+let stage = 'info';
+let currentQ = 0;
+let info = { childName:'', parentName:'', relation:'', phone:'', birthDate:'' };
+let answers = new Array(28).fill(null);
+let advanceTimer = null;
+
+const $ = s => document.querySelector(s);
+const fa = s => String(s).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function clearAdvanceTimer(){ if(advanceTimer){ clearTimeout(advanceTimer); advanceTimer=null; } }
+
+function showToast(msg){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+function animateNumber(el, to, dur){
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now - start) / dur, 1);
+    el.textContent = fa(Math.round(to * p));
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* =========================================================
+   Render: Info
+   ========================================================= */
+function renderInfo(){
+  const i = info;
+  $('#app').innerHTML = `
+    <div class="card">
+      <h2 class="card-title">مشخصات آزمون‌دهنده</h2>
+      <p class="card-sub">لطفاً اطلاعات زیر را کامل کنید تا گزارش به نام شما تهیه شود.</p>
+      <div class="grid2">
+        <div class="field">
+          <label>نام و نام خانوادگی کودک <span class="req">*</span></label>
+          <input class="input" data-f="childName" value="${esc(i.childName)}" placeholder="مثلاً: سارا احمدی">
+        </div>
+        <div class="field">
+          <label>نام و نام خانوادگی شما <span class="req">*</span></label>
+          <input class="input" data-f="parentName" value="${esc(i.parentName)}" placeholder="مثلاً: مریم احمدی">
+        </div>
+        <div class="field">
+          <label>نسبت شما با کودک <span class="req">*</span></label>
+          <input class="input" data-f="relation" value="${esc(i.relation)}" placeholder="مادر / پدر / سرپرست">
+        </div>
+        <div class="field">
+          <label>شماره تماس <span class="req">*</span></label>
+          <input class="input" data-f="phone" value="${esc(i.phone)}" placeholder="۰۹۱۲۳۴۵۶۷۸۹" inputmode="tel">
+        </div>
+        <div class="field">
+          <label>تاریخ تولد کودک <span class="req">*</span></label>
+          <input class="input" data-f="birthDate" value="${esc(i.birthDate)}" placeholder="۱۴۰۰/۰۱/۰۱">
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="startBtn">شروع آزمون</button>
+      </div>
+      <p style="font-size:12px;color:var(--muted);text-align:right;margin-top:14px">
+        پاسخ‌های شما محرمانه است و فقط برای تهیه همین گزارش استفاده می‌شود.
+      </p>
+    </div>`;
+
+  document.querySelectorAll('[data-f]').forEach(el => {
+    el.addEventListener('input', e => { info[e.target.dataset.f] = e.target.value; });
+  });
+  $('#startBtn').addEventListener('click', startQuiz);
+}
+
+function startQuiz(){
+  const required = ['childName','parentName','relation','phone','birthDate'];
+  for(const k of required){
+    if(!info[k].trim()){
+      showToast('لطفاً همه فیلدهای ستاره‌دار را تکمیل کنید.');
+      return;
+    }
+  }
+  currentQ = 0;
+  stage = 'quiz';
+  renderQuiz();
+}
+
+/* =========================================================
+   Render: Quiz
+   ========================================================= */
+function renderQuiz(){
+  clearAdvanceTimer();
+  const q = QUESTIONS[currentQ];
+  const ans = answers[currentQ];
+  const progress = (currentQ / 28) * 100;
+
+  $('#app').innerHTML = `
+    <div class="quiz-top">
+      <div class="progress-track"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div class="meta">
+        <span class="chip chip-count">سوال ${fa(currentQ+1)} از ${fa(28)}</span>
+      </div>
+    </div>
+
+    <div class="q-card" id="qCard">
+      <p class="q-text">${q.t}</p>
+      <div class="options" id="options">
+        ${OPTIONS.map((o, i) => `
+          <button type="button" class="opt ${ans === i ? 'selected' : ''}" data-v="${i}">
+            <span class="opt-num">${fa(i+1)}</span>
+            <span class="opt-label">${o}</span>
+            <span class="opt-check">✓</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn btn-ghost" id="prevBtn" ${currentQ === 0 ? 'disabled' : ''}>← سوال قبل</button>
+      <button class="btn btn-primary" id="nextBtn">
+        ${currentQ === 27 ? 'مشاهده گزارش' : 'سوال بعد →'}
+      </button>
+    </div>
+  `;
+
+  document.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => selectOption(currentQ, +btn.dataset.v));
+  });
+  $('#prevBtn').addEventListener('click', goPrev);
+  $('#nextBtn').addEventListener('click', goNext);
+
+  document.onkeydown = e => {
+    if(stage !== 'quiz') return;
+    if(['1','2','3','4'].includes(e.key)){
+      selectOption(currentQ, +e.key - 1);
+    }
+  };
+}
+
+function selectOption(qi, oi){
+  clearAdvanceTimer();
+  answers[qi] = oi;
+  document.querySelectorAll('.opt').forEach((btn, i) => {
+    btn.classList.toggle('selected', i === oi);
+  });
+  advanceTimer = setTimeout(() => {
+    advanceTimer = null;
+    if(qi === 27){
+      if(answers.every(a => a !== null)){
+        goToReport();
+      }else{
+        currentQ = answers.findIndex(a => a === null);
+        renderQuiz();
+        showToast('لطفاً به همه سوالات پاسخ دهید');
+      }
+    }else{
+      currentQ = qi + 1;
+      renderQuiz();
+    }
+  }, 380);
+}
+
+function goPrev(){
+  clearAdvanceTimer();
+  if(currentQ > 0){ currentQ--; renderQuiz(); }
+}
+
+function goNext(){
+  clearAdvanceTimer();
+  if(answers[currentQ] === null){
+    showToast('لطفاً یک گزینه را انتخاب کنید');
+    return;
+  }
+  if(currentQ < 27){
+    currentQ++; renderQuiz();
+  }else{
+    if(answers.some(a => a === null)){
+      currentQ = answers.findIndex(a => a === null);
+      renderQuiz();
+      showToast('برخی سوالات بی‌پاسخ مانده‌اند');
+      return;
+    }
+    goToReport();
+  }
+}
+
+function goToReport(){ stage = 'report'; renderReport(); }
+
+/* =========================================================
+   Compute Result
+   ========================================================= */
+function computeResult(){
+  const scores = QUESTIONS.map((q, i) => q.r ? (3 - answers[i]) : answers[i]);
+
+  const domains = DOMAINS.map(d => {
+    let s = 0;
+    for(let i = d.from; i <= d.to; i++) s += scores[i];
+    let li = d.levels.findIndex(l => s >= l.min && s <= l.max);
+    if(li < 0) li = d.levels.length - 1;
+    return { meta: d, score: s, levelIdx: li, level: d.levels[li] };
+  });
+
+  const criticalAnswers = CRITICAL_INDEXES.some(i => answers[i] >= 2);
+  if(criticalAnswers && domains[3].levelIdx < 3){
+    domains[3].levelIdx = 3;
+    domains[3].level = domains[3].meta.levels[3];
+  }
+
+  const total = scores.reduce((a, b) => a + b, 0);
+  let tIdx = TOTAL_LEVELS.findIndex(l => total >= l.min && total <= l.max);
+  if(tIdx < 0) tIdx = TOTAL_LEVELS.length - 1;
+
+  return {
+    scores, domains, total,
+    totalLevel: TOTAL_LEVELS[tIdx],
+    totalIdx: tIdx,
+    critical: criticalAnswers || tIdx === 3,
+    date: new Date().toLocaleDateString('fa-IR')
+  };
+}
+
+/* =========================================================
+   Render: Report 
+   ========================================================= */
+function renderReport(){
+  const r = computeResult();
+  const heroBg = HERO_GRADIENTS[r.totalIdx];
+  const tlColor = LEVEL_COLORS[r.totalIdx];
+
+  // ساخت داشبورد بصری جدید
+  const visualDashboard = `
+    <div class="visual-dashboard">
+      ${r.domains.map(d => {
+        const pct = Math.round(d.score / 21 * 100);
+        return `
+          <div class="vd-card">
+            <div class="vd-tube">
+              <div class="vd-fill" style="--wave-color: ${d.meta.waveColor};" data-pct="${pct}"></div>
+              <div class="vd-icon" style="color: ${d.meta.textColor}">${d.meta.icon}</div>
+            </div>
+            <div class="vd-pct" style="color: ${d.meta.textColor}">${fa(pct)}٪</div>
+            <div class="vd-label" style="color: ${d.meta.textColor}">${d.meta.shortTitle}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  const domainCards = r.domains.map(d => {
+    const color = LEVEL_COLORS[d.levelIdx];
+    const pct = Math.round(d.score / 21 * 100);
+    return `
+      <div class="dcard">
+        <div class="dcard-top">
+          <h3 class="dcard-title">${d.meta.title}</h3>
+          <span class="badge" style="background:${color}">${d.level.label}</span>
+        </div>
+        <div class="dcard-score">نمره: <b style="color:${color};font-size:14px">${fa(d.score)}</b> از ${fa(21)}</div>
+        <div class="track"><i style="width:${pct}%;background:${color}"></i></div>
+        <div class="def-block">
+          <h4>📖 تعریف حیطه</h4>
+          <p>${d.meta.definition}</p>
+        </div>
+        <div class="block"><h4>🔎 تفسیر وضعیت شما</h4><p>${d.level.self}</p></div>
+        <div class="block"><h4>👶 اثر بر فرزند</h4><p>${d.level.child}</p></div>
+        <div class="block action"><h4>✅ راهکار عملی</h4><p>${d.level.action}</p></div>
+      </div>`;
+  }).join('');
+
+  const criticalBox = r.critical ? `
+    <div class="alert">
+      <h3>⚠️ هشدار بحرانی</h3>
+      پاسخ‌های شما نشان می‌دهد ممکن است درگیر افکار مربوط به آسیب رساندن به خودتان باشید.
+      این وضعیت قابل درمان است و شما تنها نیستید. لطفاً همین امروز با یکی از این مراکز تماس بگیرید:
+      <br>خط مشاوره بهزیستی: <b>${fa(1480)}</b> · اورژانس اجتماعی: <b>${fa(123)}</b>
+      <br>و یکی از اعضای امن خانواده را در جریان بگذارید.
+    </div>` : '';
+
+  const reviewRows = QUESTIONS.map((q, i) => {
+    const a = answers[i];
+    return `
+      <div class="rev-row">
+        <div class="rev-q">${fa(i+1)}. ${q.t}</div>
+        <div class="rev-a">${a !== null ? OPTIONS[a] : '—'}</div>
+      </div>`;
+  }).join('');
+
+  $('#app').innerHTML = `
+    <!-- لوگوی اختصاصی بالای گزارش (تنها در خروجی PDF دیده می‌شود) -->
+    <div class="report-logo">
+      <img src="${ACADEMY.logoUrl}" alt="آکادمی آکسون" class="report-logo-img">
+    </div>
+
+    <div class="hero" style="background:${heroBg}">
+      <div class="hero-header" style="flex-direction: column; align-items: center; text-align: center; gap: 4px; margin-bottom: 20px; width: 100%;">
+        <p class="hero-tag" style="font-size: 17px; font-weight: 800; margin: 0;">گزارش آزمون سلامت روان GHQ-28</p>
+        <p style="font-size: 12px; opacity: 0.85; margin: 0; width: 100%; text-align: left;">تاریخ: ${r.date}</p>
+      </div>
+      <div class="hero-body" style="justify-content: center; text-align: center; flex-direction: column; gap: 10px;">
+        <p class="hero-name" style="margin-bottom: 10px;">${esc(info.parentName)}</p>
+        <div class="score-ring"><b id="totalScore">۰</b><span>از ${fa(84)}</span></div>
+        <div>
+          <p class="hero-status">${r.totalLevel.label}</p>
+          <p class="hero-status-sub">${r.totalLevel.title}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">${INTRO_NOTE}</div>
+    ${criticalBox}
+
+    <div class="card">
+      <h2 class="card-title">مشخصات آزمون‌دهنده</h2>
+      <div class="info-grid">
+        <div class="info-item"><span class="k">نام کودک</span><span class="v">${esc(info.childName)}</span></div>
+        <div class="info-item"><span class="k">نام والد</span><span class="v">${esc(info.parentName)}</span></div>
+        <div class="info-item"><span class="k">نسبت با کودک</span><span class="v">${esc(info.relation)}</span></div>
+        <div class="info-item"><span class="k">شماره تماس</span><span class="v">${esc(info.phone)}</span></div>
+        <div class="info-item"><span class="k">تاریخ تولد کودک</span><span class="v">${esc(info.birthDate)}</span></div>
+        <div class="info-item"><span class="k">تاریخ آزمون</span><span class="v">${r.date}</span></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">نمرات شما در یک نگاه</h2>
+    ${visualDashboard}
+
+    <h2 class="section-title">تحلیل تفصیلی چهار حیطه</h2>
+    ${domainCards}
+
+    <div class="total-card" style="background:${tlColor}">
+      <h3>${r.totalLevel.label} — ${r.totalLevel.title}</h3>
+      <p>${r.totalLevel.text}</p>
+    </div>
+
+    <details class="review">
+      <summary>مشاهده پاسخ‌های شما به تفکیک</summary>
+      <div class="rev-body">${reviewRows}</div>
+    </details>
+
+    <div class="card no-print" style="margin-top:22px">
+      <h2 class="card-title">دریافت خروجی</h2>
+      <p class="card-sub">گزارش را می‌توانید به‌صورت PDF ذخیره کنید یا آزمون را دوباره شروع کنید.</p>
+      <div class="actions" style="margin-top:0">
+        <button class="btn btn-primary" id="pdfBtn">💾 ذخیره گزارش (PDF)</button>
+        <button class="btn btn-ghost" id="restartBtn">🔄 آزمون جدید</button>
+      </div>
+    </div>
+
+    <div class="academy-credit">
+      <span>تهیه‌شده در ${ACADEMY.name}</span>
+    </div>
+
+    <p class="disclaimer">
+      این گزارش یک ابزار غربالگری و خودآگاهی است و جایگزین تشخیص یا درمان تخصصی نیست.
+      در صورت نگرانی درباره سلامت روان خود یا فرزندتان، با روان‌شناس یا روان‌پزشک مشورت کنید.
+    </p>
+    <p class="disclaimer" style="margin-top:10px">
+      برای دریافت راهنمایی بیشتر می‌توانید نتیجه را به آی‌دی <b>Eptima51</b> در ایتا یا تلگرام ارسال نمایید:
+      <br>
+      <a href="https://eitaa.com/Eptima51" target="_blank" rel="noopener" style="color:#0f6b4a">eitaa.com/Eptima51</a>
+      &nbsp;·&nbsp;
+      <a href="https://t.me/eptima51" target="_blank" rel="noopener" style="color:#0f6b4a">t.me/eptima51</a>
+    </p>
+  `;
+
+  // انیمیشن پر شدن نمره کل
+  setTimeout(() => {
+    const el = $('#totalScore');
+    if(el) animateNumber(el, r.total, 900);
+  }, 200);
+
+  // انیمیشن پر شدن لوله‌های داشبورد بصری
+  setTimeout(() => {
+    document.querySelectorAll('.vd-fill').forEach(el => {
+      el.style.height = el.dataset.pct + '%';
+    });
+  }, 300);
+
+  $('#pdfBtn').addEventListener('click', () => {
+    document.querySelectorAll('details').forEach(d => d.open = true);
+    setTimeout(() => window.print(), 100);
+  });
+  $('#restartBtn').addEventListener('click', () => {
+    if(confirm('آزمون جدید شروع شود؟ پاسخ‌های فعلی پاک می‌شوند.')){
+      answers = new Array(28).fill(null);
+      info = { childName:'', parentName:'', relation:'', phone:'', birthDate:'' };
+      currentQ = 0; stage = 'info';
+      renderInfo();
+    }
+  });
+
+  syncToPorsline(r);
+}
+
+/* =========================================================
+   Optional: Sync to Porsline
+   ========================================================= */
+async function syncToPorsline(r){
+  if(!PORSLINE.enabled) return;
+  try{
+    const data = {};
+    answers.forEach((a, i) => {
+      const pid = PORSLINE.questionIdMap[i];
+      if(pid) data[pid] = a;
+    });
+    const res = await fetch(PORSLINE.proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ surveyId: PORSLINE.surveyId, answers: data, meta: info })
+    });
+    if(res.ok) console.log('Porsline sync OK');
+  }catch(err){
+    console.warn('Porsline sync failed', err);
+  }
+}
+
+renderInfo();
+</script>
+</body>
+</html>
